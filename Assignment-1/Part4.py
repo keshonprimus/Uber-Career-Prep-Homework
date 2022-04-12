@@ -68,18 +68,24 @@ class LinkedList(object):
         last = self.head
         i = 0
         
-        while(last.next_):
+        while(last):
             if self.head is None:
                 print("Error: Empty List.")
                 return 
             elif index_to_delete > self.n:
                 print("Error: Index out of range.")
                 return
-            elif i == index_to_delete:
-                old = last
-                last = last.next_.next_
-                self.n -= 1
-                return old
+            elif i+1 == index_to_delete:
+                if (last.next_.next_):
+                    old = last.next_
+                    last = last.next_ = last.next_.next_
+                    self.n -= 1
+                    return old
+                else:
+                    old = last.next_
+                    last = last.next_ = None
+                    return old
+                    self.n -= 1
             else:
                 last = last.next_
                 i += 1
@@ -92,13 +98,14 @@ class LinkedList(object):
         
         while (temp):
             if self.head is None:
-                print("Error: Empty List.")
-                break
+                return "\nError: Empty List."
+                
             elif index > self.n:
-                print("Error: Index out of range.")
-                break
+                return "\nError: Index out of range."
+                
             elif (i == index):
                 return temp.data
+            
             else:
                 temp = temp.next_
                 i += 1
@@ -110,10 +117,10 @@ llist = LinkedList()
     # Insert 6.  So linked list becomes 6->None
 llist.push(6)
  
-    # Insert 7 at the end. So linked list becomes 7->6->None
+    # Insert 7 at the beginning. So linked list becomes 7->6->None
 llist.push(7);
  
-    # Insert 1 at the end. So linked list becomes 1->7->6->None
+    # Insert 1 at the beginning. So linked list becomes 1->7->6->None
 llist.push(1);
  
     # Insert 4 at the end. So linked list becomes 1->7->6->4->None
@@ -129,8 +136,6 @@ print()
 
 llist.insertAfter(3, llist.head.next_.next_.next_)
 
-
-
 print(llist.size())
 llist.printList()
 print()
@@ -141,4 +146,8 @@ llist.printList()
 print()
 print()
 
-print(llist.elementAt(2))
+print("Element at index is:", llist.elementAt(7))
+print("Element at index is:", llist.elementAt(4))
+
+llist.remove(3)
+llist.printList()
