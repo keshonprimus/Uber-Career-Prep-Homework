@@ -1,7 +1,7 @@
 class TreeNode:
     def __init__(self, data):
         self.employees = []
-        for i in data: #accepts an array of data input
+        for i in data: #accepts an array of data lists for data input
             self.employees.append(i)
         self.left = self.right = None
     
@@ -27,13 +27,13 @@ def printbyLevel(root):
                 nodetoprint = levelqueue.pop(0) #remove the node that is to be used from the queue. This is the first node added to the queue
                 
                 for i in range(0, len(nodetoprint.employees), 1):
-                    if len(nodetoprint.employees) > 1:
+                    if len(nodetoprint.employees[i]) > 1:
                         print("Name:", nodetoprint.employees[i][0], end = ", ") #prints the name of employee
                         print("Title:", nodetoprint.employees[i][1])    #prints title of employee
                         
                     else:    
-                        print("Name:", nodetoprint.employees[0], end = ", ") #if only 1 employee is in array at that level 
-                        print("Title:", nodetoprint.employees[1])
+                        print("Name:", nodetoprint.employees, end = ", ") #if only 1 employee is in array at that level 
+                        print("Title:", nodetoprint.employees)
                         
                 
                 if nodetoprint.left: #if a left subtree exists
@@ -50,6 +50,6 @@ root = TreeNode([["Sarah", "CEO"], ["Jim", "Sales Rep"]])
 root.left = TreeNode([["Pam", "Receptionist"], ["Selena", "Accounting"]])
 root.right = TreeNode([["Creed", "I don't know"], ["Taylor", "Assistant"]])
 root.left.left = TreeNode([["Michael", "Regional Managaer"], ["Adam", "IT"]])
-root.left.right = TreeNode(["John", "Security"])
+root.left.right = TreeNode([["John", "Security"]])
 printbyLevel(root)
-#Note: Formatting issue encountered with the format of the printing of the employees' names and titles. 
+
